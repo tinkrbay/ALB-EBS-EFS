@@ -21,7 +21,11 @@ vi /etc/fstab and then press shift+G and then shift+A. Hit enter to go a new las
 
 Insert the below line. Do not remove the :/ 
 
-efs-dns-name:/	/var/www/html/php-watermark-gallery/images/	nfs4	nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,_netdev,noresvport	0	0' /etc/fstab
+efs-dns-name:/	/var/www/html/php-watermark-gallery/images/	nfs4	nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,_netdev,noresvport	0	0
+
+Save the file via Esc + Shift : + wq!
+
+Then mount the EFS using the below command 
 sudo mount -a
 
 TIP: The mounting will take time but should eventually succeed without any error. If there is any error, then we need to troubleshoot
