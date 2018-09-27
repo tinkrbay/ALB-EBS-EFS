@@ -1,4 +1,6 @@
-Create a new EFS volume in North Virginia (mount targets in public-1a, public-1b & public-1c subnets of myvpc1)
+Create a new EFS volume in North Virginia
+The mount targets will be in public-1a, public-1b & public-1c subnets of myvpc1
+Add the tags with Key: Name and Value: php-watermark-gallery-images
 
 We will launch 1 EC2 instance with the same AMI php-watermark-gallery-1 
 
