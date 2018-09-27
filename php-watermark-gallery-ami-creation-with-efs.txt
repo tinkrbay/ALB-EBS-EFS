@@ -1,0 +1,43 @@
+Create a new EFS volume in North Virginia (mount targets in public-1a, public-1b & public-1c subnets of myvpc1)
+
+We will launch 1 EC2 instance with the same AMI php-watermark-gallery-1 
+
+Verify if the application is working appropriately
+
+SSH into the EC2 instance
+
+sudo su
+cd /var/www/html/php-watermark-gallery
+
+Verify if the images directory exists or not
+
+Next we will mount this images directory onto EFS as an externally shared volume. 
+
+Run the below commands carefully replacing the string efs-dns-name with the dns name of your EFS volume
+
+Do not remove the :/ 
+
+sudo sed -i -- '$ a efs-dns-name:/	/var/www/html/php-watermark-gallery/images/	nfs4	nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,_netdev,noresvport	0	0' /etc/fstab
+sudo mount -a
+
+TIP: The mounting will take time but should eventually succeed without any error. If there is any error, then we need to troubleshoot
+
+Once mounting is done, we need to verify
+
+You cannot see the EFS mounting via lsblk
+
+Instead you need to execute the command
+
+sudo df -h 
+
+You will see 
+
+If successful mounting occurs, then go ahead and upload some images and validate the application
+
+Once done, Create an AMI with the below details
+Name: php-watermark-gallery-2
+Description: Unencrypted AMI for php-watermark-gallery application with 8GiB root volume, 1GiB volume hosting the php-watermark-gallery subdirectory and an EFS mounting for the images sub-directory
+
+Once the AMI is available, you can launch an EC2 instance with php-watermark-gallery-2 AMI and verify the application
+
+
