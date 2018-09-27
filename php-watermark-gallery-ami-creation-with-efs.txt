@@ -15,7 +15,9 @@ Verify if the images directory exists or not
 
 Next we will mount this images directory onto EFS as an externally shared volume. 
 
-Run the below commands carefully replacing the string efs-dns-name with the dns name of your EFS volume
+Run the below commands carefully to mount the EFS volume.
+
+Keep your EFS DNS name handy in a notepad
 
 vi /etc/fstab and then press shift+G and then shift+A. Hit enter to go a new last line
 
@@ -23,9 +25,11 @@ Insert the below line. Do not remove the :/
 
 efs-dns-name:/	/var/www/html/php-watermark-gallery/images/	nfs4	nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,_netdev,noresvport	0	0
 
+Next take your curson and change the efs-dns-name string with the actual dns name of your EFS volume
 Save the file via Esc + Shift : + wq!
 
-Then mount the EFS using the below command 
+Then mount the EFS using the below command
+
 sudo mount -a
 
 TIP: The mounting will take time but should eventually succeed without any error. If there is any error, then we need to troubleshoot
@@ -38,7 +42,7 @@ Instead you need to execute the command
 
 sudo df -h 
 
-You will see 
+You will see an output indicating the EFS mounting
 
 If successful mounting occurs, then go ahead and upload some images and validate the application
 
