@@ -44,7 +44,13 @@ sudo df -h
 
 You will see an output indicating the EFS mounting
 
-If successful mounting occurs, then go ahead and upload some images and validate the application
+Now that you mounted the images directory on a new EFS volume., the permissions on the images directory are automatically reseted to root
+
+Issue the below commands to reinstate the permissions again
+
+sudo chown -R apache.apache /var/www/html/
+
+If everything has been done as documented., then go ahead and upload some images and validate the application
 
 Once done, Create an AMI with the below details
 Name: php-watermark-gallery-2
