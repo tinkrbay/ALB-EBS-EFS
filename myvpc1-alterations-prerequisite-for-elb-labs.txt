@@ -1,0 +1,31 @@
+ADDITIONAL SUBNETS FOR ELB VIRTUAL INTERFACES
+
+We will create three new subnets (Our ELB's virtual interfaces will be placed in these subnets)
+
+myvpc1-elb-public1a (172.31.100.0/24)., AZ us-east-1a
+myvpc1-elb-public1b (172.31.101.0/24)., AZ us-east-1b
+myvpc1-elb-public1c (172.31.102.0/24)., AZ us-east-1c
+
+Ensure that the name tags are applied as above to the respective subnets
+
+Next, you will go and enable auto-assignment of public IP addresses for each of these subnets
+
+FINALIZING OUR SECURITY GROUPS TOWARDS TARGET STATE ARCHITECTURES USED FURTHER IN THIS COURSE
+
+Delete test1 security group. We are beyond simple test based scenarios
+
+Create a new security group named elb-frontend (this security group will be used on our Load Balancers)
+Add the following inbound rules
+HTTP from 0.0.0.0/0
+HTTPS from 0.0.0.0/0
+Outbound rules will be left with default values to allow all traffic 
+
+Create new security group called as webapps-with-elb-frontend
+Add the following inbound rules
+HTTP from (select source as the elb-frontend security group)
+HTTPS from (seleect source as the elb-frontend security group)
+
+Create new security group called as webapps-without-elb-frontend
+
+Go the EFS volume that we created for the PHP watermark Images directory and edit the security group associated with the mount targets. Delete the test1 security group and add webapps-with-elb-frontend & webapps-without-elb-frontend
+
