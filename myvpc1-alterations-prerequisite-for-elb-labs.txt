@@ -10,6 +10,26 @@ Ensure that the name tags are applied as above to the respective subnets
 
 Next, you will go and enable auto-assignment of public IP addresses for each of these subnets
 
+NEW ROUTING TABLE FOR ELASTIC LOAD BALANCER SUBNETS
+
+create a new routing table for myvpc1 and name tag it as myvpc1-elb
+Associate the myvpc1-elb-public1a, myvpc1-elb-public1b & myvpc1-elb-public1c subnets with this routing table
+Add a new route 0.0.0.0/0 via IGW in this routing table
+
+ADDING NEW NACL FOR THE ELASTIC LOAD BALANCER SUBNETS
+
+Create a new NACL and name it as myvpc1-elb
+Associate the myvpc1-elb-public1a, myvpc1-elb-public1b & myvpc1-elb-public1c subnets with this NACL
+
+Edit the inbound rules and add the below rules
+Rule number 100., allow HTTP traffic from 0.0.0.0/0 
+Rule number 200., allow HTTPS traffic from 0.0.0.0/0
+Rule number 300., allow all traffic from 172.31.0.0/16
+
+Edit the outbound rules and add the below rules
+Rule number 100., add custom tcp rule as type & port range as 1024-65535., destination 0.0.0.0/0 with an effect of Allow
+Rule number 200., add allow all traffic to 172.31.0.0/16
+
 FINALIZING OUR SECURITY GROUPS TOWARDS TARGET STATE ARCHITECTURES USED FURTHER IN THIS COURSE
 
 Delete test1 security group. We are beyond simple test based scenarios
