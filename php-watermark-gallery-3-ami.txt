@@ -1,0 +1,23 @@
+For all the further labs that involve load-balancers and the php-watermark-gallery application, we will be using a new AMI.
+
+WHY?: As our sessions will be load-balanced between multiple servers we will be using a PHP script that polls the EC2 meta-data and displays as a webpage.
+
+Therefore we will create a new AMI named as php-watermark-gallery-3. This new AMI is created from the base AMI php-watermark-gallery-2
+
+Launch an EC2 instance with php-watermark-gallery-2 AMI in myvpc1 public-1a subnet
+
+Use the below userdata to download the code for aws-metadata-test-page
+#/bin/bash
+sudo su
+cd /home/ec2-user
+wget https://github.com/tinkrbay/aws-metadata-php-page/archive/master.zip
+unzip master.zip
+mv aws-metadata-php-page-master/* /var/www/html/
+service httpd restart
+In the "add storage" step, select the delete on termination for 1GiB EBS volume
+Launch the instance and verify the application
+
+Once done, create an AMI from this instance
+AMI Name: php-watermark-gallery-3
+Description: Unencrypted AMI for php-watermark-gallery application with 8GiB root volume (delete-on-termination), 1GiB volume (delete-on-termination) hosting the php-watermark-gallery subdirectory and an EFS mounting for the images sub-directory. In addition, there is a aws-metadata-php-page-master script placed in the /var/www/html/ directory for validating loadbalancing actions.
+Name-tag the AMI and the corresponding snapshots as php-watermark-gallery-3
