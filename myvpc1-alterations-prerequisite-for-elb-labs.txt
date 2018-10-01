@@ -14,7 +14,7 @@ NEW ROUTING TABLE FOR ELASTIC LOAD BALANCER SUBNETS
 
 create a new routing table for myvpc1 and name tag it as myvpc1-elb
 Associate the myvpc1-elb-public1a, myvpc1-elb-public1b & myvpc1-elb-public1c subnets with this routing table
-Add a new route 0.0.0.0/0 via IGW in this routing table
+Add a new route 0.0.0.0/0 via the already defined IGW in this routing table
 
 ADDING NEW NACL FOR THE ELASTIC LOAD BALANCER SUBNETS
 
