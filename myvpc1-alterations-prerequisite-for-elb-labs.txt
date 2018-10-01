@@ -2,9 +2,9 @@ ADDITIONAL SUBNETS FOR ELB VIRTUAL INTERFACES
 
 We will create three new subnets (Our ELB's virtual interfaces will be placed in these subnets)
 
-myvpc1-elb-public1a (172.31.100.0/24)., AZ us-east-1a
-myvpc1-elb-public1b (172.31.101.0/24)., AZ us-east-1b
-myvpc1-elb-public1c (172.31.102.0/24)., AZ us-east-1c
+myvpc1-elb-public1a (172.31.101.0/24)., AZ us-east-1a
+myvpc1-elb-public1b (172.31.102.0/24)., AZ us-east-1b
+myvpc1-elb-public1c (172.31.103.0/24)., AZ us-east-1c
 
 Ensure that the name tags are applied as above to the respective subnets
 
