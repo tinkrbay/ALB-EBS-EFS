@@ -44,8 +44,31 @@ Create new security group called as webapps-with-elb-frontend
 Add the following inbound rules
 HTTP from (select source as the elb-frontend security group)
 HTTPS from (seleect source as the elb-frontend security group)
+Leave the outbound rule to default permit all
 
 Create new security group called as webapps-without-elb-frontend
+Add the following inbound rules
+HTTP from 0.0.0.0/0
+HTTPS from 0.0.0.0/0
+Leave the outbound rule to default permit all
 
-Go the EFS volume that we created for the PHP watermark Images directory and edit the security group associated with the mount targets. Delete the test1 security group and add webapps-with-elb-frontend & webapps-without-elb-frontend
+Create new security group called public-ssh-access
+Add the following inbound rules
+SSH from 0.0.0.0/0
+Leave the outbound rule to default permit all
+
+Create new security group called bastion-host
+Add the following inbound rules
+SSH from 0.0.0.0/0
+Leave the outbound rule default permit all
+
+Create a new security group called ssh-access-from-bastion
+Add the following inbound rule
+SSH from (select source as the security group named bastion-host)
+Leave the outbound rule default permit all
+
+Go the EFS volume that we created for the PHP watermark Images directory
+Edit the security group associated with the mount targets. 
+Delete the test1 security group from the mount-target association
+Add webapps-with-elb-frontend & webapps-without-elb-frontend security groups against each mount target of public1a/1b/1c
 
